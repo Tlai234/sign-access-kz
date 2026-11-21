@@ -65,6 +65,36 @@
 
   footer{border-top:1px solid var(--rule);padding:40px 24px;text-align:center;font:400 13px/1.5 system-ui,sans-serif;color:var(--muted)}
 
+  /* interactive intro */
+  #intro{position:relative;min-height:calc(100vh - 50px);max-width:1040px;margin:0 auto;padding:9vh 24px 8vh;display:flex;align-items:center}
+  .skip{position:absolute;top:18px;right:24px;background:none;border:none;font:500 13px/1 system-ui,sans-serif;color:var(--muted);cursor:pointer}
+  .skip:hover{color:var(--accent)}
+  .stage{display:none;width:100%}
+  .stage.show{display:block;animation:fadeUp .7s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .scene{font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:1.3;margin:.5em 0 .8em;max-width:780px}
+  .scene.small{font-size:1.25rem;color:var(--accent);font-style:italic;margin-top:.6em}
+  .bubble{background:#fff;border:1px solid var(--rule);border-radius:18px 18px 18px 4px;padding:18px 22px;max-width:620px;box-shadow:0 6px 24px rgba(0,0,0,.05)}
+  .bubble .who{font:700 12px/1 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .bubble p{margin:.5em 0 0;font-size:1.3rem;color:#9aa3a5;letter-spacing:.06em;filter:blur(.6px);animation:shimmer 2.4s ease-in-out infinite}
+  @keyframes shimmer{50%{opacity:.45}}
+  .cta{display:inline-block;margin-top:28px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:15px 26px;font:600 16px/1 system-ui,sans-serif;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s}
+  .cta:hover{background:var(--accent);transform:translateY(-2px)}
+  .reply{margin-top:18px;max-width:720px}
+  .reply .line{font-size:clamp(1.25rem,2.6vw,1.75rem);line-height:1.4;margin:0 0 .7em;opacity:0;transform:translateY(10px)}
+  .stage.show .reply .line{animation:fadeUp .6s ease forwards}
+  .stage.show .l1{animation-delay:.3s!important}
+  .stage.show .l2{animation-delay:1.4s!important}
+  .stage.show .l3{animation-delay:2.5s!important}
+  .stage.show .l4{animation-delay:3.6s!important}
+  .reply .verdict{color:var(--accent);font-weight:700}
+  #st2 .cta{opacity:0;animation:fadeUp .6s ease 4.4s forwards}
+  #st3 h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;margin:.35em 0 .25em;letter-spacing:-.01em}
+  #st3 .lede{font-size:1.3rem;color:var(--muted);max-width:640px;margin:0}
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+  .summary div{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px;font-size:16px;line-height:1.5}
+  .summary span{display:block;font:700 12px/1 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+
   /* progress + active nav */
   #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:20;transition:width .1s}
   nav a.step.active{background:var(--ink);color:#fff}
@@ -123,16 +153,48 @@
   </div>
 </nav>
 
-<header class="hero" id="top">
-  <span class="tag">PLS 419 · Final project · An AI answer for Kazakhstan</span>
-  <h1>Sixty Hours<br>a Year</h1>
-  <p class="lede">Sign language, artificial intelligence, and the right to be understood in Kazakhstan.</p>
-  <div class="counter">
-    <div><b>60</b><small>hours of sign language<br>interpretation per person, per year</small></div>
-    <div><b>~200</b><small>sign language interpreters<br>in the whole country</small></div>
-    <div><b>30,000+</b><small>people with hearing<br>impairments</small></div>
+<!-- INTERACTIVE INTRO -->
+<div id="intro">
+  <button class="skip" id="skip">Skip intro →</button>
+
+  <div class="stage show" id="st1">
+    <span class="tag">An illustrative scene</span>
+    <p class="scene">You are at a polyclinic in Kazakhstan.<br>The doctor is explaining your test results.</p>
+    <div class="bubble"><span class="who">Doctor</span><p id="garble">▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒▒▒ ▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒, ▒▒▒ ▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒…</p></div>
+    <p class="scene small">You are deaf. You can't hear a word.</p>
+    <button class="cta" data-go="st2">Ask for a sign language interpreter</button>
   </div>
-</header>
+
+  <div class="stage" id="st2">
+    <span class="tag">Request: sign language interpreter</span>
+    <div class="reply">
+      <p class="line l1">Checking… <b>about 200 interpreters</b> work in the whole country.</p>
+      <p class="line l2">They serve <b>more than 30,000</b> people with hearing impairments, about <b>150 people each</b>.</p>
+      <p class="line l3">And the state covers only <b>60 hours</b> of interpretation per person, <b>per year</b>.</p>
+      <p class="line l4 verdict">No interpreter is available today.</p>
+    </div>
+    <button class="cta" data-go="st3">So what happens to people like you?</button>
+  </div>
+
+  <div class="stage" id="st3">
+    <span class="tag">PLS 419 · Final project · An AI answer for Kazakhstan</span>
+    <h1>Sixty Hours<br>a Year</h1>
+    <p class="lede">Sign language, artificial intelligence, and the right to be understood in Kazakhstan.</p>
+    <div class="counter">
+      <div><b data-count="60">0</b><small>hours of interpretation<br>per person, per year</small></div>
+      <div><b data-count="200" data-pre="~">0</b><small>sign language interpreters<br>in the whole country</small></div>
+      <div><b data-count="30000" data-post="+">0</b><small>people with hearing<br>impairments</small></div>
+    </div>
+    <div class="summary">
+      <div><span>The problem</span>Deaf people in Kazakhstan are promised equal access to public life, but there are far too few interpreters to deliver it.</div>
+      <div><span>The AI idea</span>An AI translator between Kazakh/Russian and sign language could reach people that 200 interpreters never will.</div>
+      <div><span>The question</span>Can AI widen access without becoming an excuse to stop investing in interpreters and deaf people's rights? And should Kazakhstan build it?</div>
+    </div>
+    <a class="cta" href="#problem">Start reading ↓</a>
+  </div>
+</div>
+
+<header class="hero" id="top" hidden></header>
 
 <!-- SECTION 1 -->
 <section id="problem">
@@ -239,6 +301,31 @@
 </footer>
 
 <script>
+/* ---------- interactive intro ---------- */
+function goStage(id){
+  document.querySelectorAll('.stage').forEach(s => s.classList.remove('show'));
+  const st = document.getElementById(id); st.classList.add('show');
+  if (id === 'st3') { document.getElementById('skip').style.display = 'none'; countUp(); }
+  document.getElementById('intro').scrollIntoView({behavior:'smooth'});
+}
+document.querySelectorAll('.stage button.cta').forEach(b => b.addEventListener('click', () => goStage(b.dataset.go)));
+document.getElementById('skip').addEventListener('click', () => goStage('st3'));
+let counted = false;
+function countUp(){
+  if (counted) return; counted = true;
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const end = +el.dataset.count, pre = el.dataset.pre || '', post = el.dataset.post || '';
+    const t0 = performance.now(), dur = 1400;
+    (function tick(t){
+      const p = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      el.textContent = pre + v.toLocaleString('en-US') + post;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  });
+}
+/* brand link returns to the title screen */
+document.querySelector('nav .brand').addEventListener('click', e => { e.preventDefault(); goStage('st3'); });
+
 /* ---------- 60-hour budget ---------- */
 const ACTS = [
   ["GP / polyclinic visit", 1.5],
