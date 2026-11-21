@@ -95,6 +95,25 @@
   .summary div{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px;font-size:16px;line-height:1.5}
   .summary span{display:block;font:700 12px/1 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 
+  /* section 2 charts */
+  .toggle{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;margin-bottom:18px}
+  .toggle button{border:none;background:none;padding:8px 14px;font:500 13px/1 system-ui,sans-serif;cursor:pointer;color:var(--muted)}
+  .toggle button.on{background:var(--ink);color:#fff}
+  .hbar{display:grid;grid-template-columns:170px 1fr 86px;align-items:center;gap:10px;margin:7px 0;font-size:14px;cursor:pointer}
+  .hbar .lab{text-align:right;color:var(--ink);line-height:1.2}
+  .hbar .trk{height:24px;background:var(--paper);border-radius:5px;overflow:hidden}
+  .hbar .bar{height:100%;border-radius:5px;transition:width .6s ease,background .3s}
+  .hbar .val{font-weight:700;font-variant-numeric:tabular-nums}
+  .hbar:hover .lab,.hbar.sel .lab{font-weight:700}
+  .hbar.sel .bar{outline:2px solid var(--ink);outline-offset:1px}
+  .detail{margin-top:14px;background:var(--paper);border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.5;min-height:52px}
+  .ruralkey{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:12px}
+  .ruralkey i{display:block;width:140px;height:10px;border-radius:5px;background:linear-gradient(90deg,#e2d0c4,#8a3b2e)}
+  .silences{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:1.2em 0}
+  .silences div{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;font:400 14px/1.5 system-ui,sans-serif;color:var(--muted)}
+  .silences b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+  @media (max-width:600px){.hbar{grid-template-columns:110px 1fr 70px;font-size:12px}}
+
   /* progress + active nav */
   #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:20;transition:width .1s}
   nav a.step.active{background:var(--ink);color:#fff}
@@ -146,7 +165,7 @@
   <div class="inner">
     <a class="brand" href="#top">Sixty Hours a Year</a>
     <a class="step done" href="#problem"><span>1</span>Problem</a>
-    <a class="step" href="#data"><span>2</span>Data</a>
+    <a class="step done" href="#data"><span>2</span>Data</a>
     <a class="step" href="#research"><span>3</span>Research</a>
     <a class="step" href="#solution"><span>4</span>AI &amp; Costs</a>
     <a class="step" href="#verdict"><span>✓</span>Verdict</a>
@@ -260,11 +279,76 @@
 </section>
 
 <!-- SECTION 2 -->
-<section id="data" class="soon">
+<section id="data">
   <div class="inner">
     <span class="num">Section 2 · Background &amp; Data</span>
     <h2>What the numbers show, and what they hide</h2>
-    <div class="placeholder">Coming soon: the data landscape, an original chart, and where the data falls silent.</div>
+
+    <h3>Who measures what</h3>
+    <p>Several institutions count deaf people in Kazakhstan, and none of them counts the same thing.</p>
+    <ul>
+      <li><strong>The Ministry of Labour and Social Protection</strong> runs an online portal (inva.gov.kz) that publishes the number of people with a <em>registered</em> disability, by type and region. As of 22 November 2026, it lists <strong>30,497 people with a hearing disability</strong>, out of 728,596 people with any disability, about 4.2%.</li>
+      <li><strong>The Bureau of National Statistics</strong> publishes disability totals, but no separate series on deafness or sign language.</li>
+      <li><strong>The Kazakhstan Society of the Deaf</strong>, active since 1937, has about 16,000 members (Kazakhstanskaya Pravda, 2023).</li>
+      <li><strong>Deaf-led NGOs</strong> give their own estimates: the Ümit support centre has said about 200,000 (24.kz, 2024) and, more recently, about 150,000 (Kazakhstanskaya Pravda, 2026).</li>
+      <li><strong>The World Health Organization</strong> estimates that over 430 million people worldwide, about 5.5% of the world's population, have disabling hearing loss (WHO, 2021).</li>
+    </ul>
+    <p>On interpreters, there is no public registry at all. The figure of "just over 200" comes from a deputy's statement in Parliament (24.kz, 2026), and another deputy has said that only 24 certified interpreters work in colleges (BES.media).</p>
+
+    <div class="widget reveal" id="fig1">
+      <h4>Figure 1. How many deaf people live in Kazakhstan? It depends who you ask</h4>
+      <p class="sub">Click a bar to see what each number really counts. Switch the scale to compare the small numbers.</p>
+      <div class="toggle"><button class="on" data-scale="log">Log scale</button><button data-scale="lin">Linear scale</button></div>
+      <div id="f1bars"></div>
+      <div class="detail" id="f1detail">Click a bar.</div>
+      <p class="note">Sources: Kazakhstan Society of the Deaf via Kazakhstanskaya Pravda (2023); Ministry of Labour portal inva.gov.kz (22.11.2026); Ümit centre via 24.kz (2024) and Kazakhstanskaya Pravda (2026); WHO (2021) × population 20,633,529 (BNS, 1.10.2026), author's calculation.</p>
+    </div>
+
+    <p>The numbers range from 16,000 to over a million, more than a sixty-fold difference. They are not simply "right" or "wrong". They measure different things: membership, legal status, community knowledge, or medical hearing loss. None of them measures what matters most for this project: <strong>how many people actually communicate in sign language</strong> and need an interpreter.</p>
+
+    <div class="widget reveal" id="fig2">
+      <h4>Figure 2. Registered hearing disability by region</h4>
+      <p class="sub">Bar length = people with a registered hearing disability. Colour = share of all people with disabilities in that region who live in villages. Hover or tap a bar for details.</p>
+      <div class="toggle"><button class="on" data-sort="count">Sort by number</button><button data-sort="rural">Sort by rural share</button></div>
+      <div id="f2bars"></div>
+      <div class="ruralkey"><span>Mostly urban</span><i></i><span>Mostly rural</span></div>
+      <div class="detail" id="f2detail">Hover over a region.</div>
+      <p class="note">Data collected by the author from the Ministry of Labour and Social Protection portal (inva.gov.kz), statistics as of 22.11.2026. Rural share is for all people with disabilities in the region; the portal does not split hearing disability by city and village.</p>
+    </div>
+
+    <p>Three patterns stand out:</p>
+    <ol>
+      <li><strong>Concentration.</strong> Turkestan region (3,792), Almaty city (3,051), Karaganda (2,544), Shymkent (2,096) and Astana (2,050) together account for about 44% of all registered cases.</li>
+      <li><strong>Rural distance.</strong> In several regions most people with disabilities live in villages: 81% in Almaty region, 72% in Turkestan, 57% in Zhambyl. Interpreters, where they exist, mostly work in cities.</li>
+      <li><strong>A striking gap.</strong> Officially, Almaty city, Almaty region and Zhetisu (formerly part of Almaty region) have 6,033 people with a registered hearing disability combined. The head of the Ümit centre says that <strong>30,000</strong> people with hearing disabilities live in Almaty and Almaty region alone (Kazakhstanskaya Pravda, 2026). That's a five-fold difference in a single area.</li>
+    </ol>
+
+    <h3>Where the data is silent</h3>
+    <p>The official numbers are reliable as a count of <strong>people with legal disability status</strong>. They are much less reliable as a count of <strong>people who need sign language</strong>. Several groups fall through the gaps:</p>
+    <div class="silences">
+      <div><b>No papers, no count</b>People without documents or housing cannot go through the medical-social assessment, so they never enter the register.</div>
+      <div><b>An unclear process</b>An assessment that is not transparent or hard to access discourages people from applying, especially far from regional centres.</div>
+      <div><b>Stigma</b>Some families avoid the disability label for their children or themselves.</div>
+      <div><b>Never applied</b>Hard-of-hearing people without status may still rely on sign language or captions in daily life.</div>
+      <div><b>Invisible interpreters</b>Nobody publishes how many interpreters work in each region, so the real distance between a deaf person and an interpreter can't be measured.</div>
+      <div><b>Who actually signs?</b>No source separates people with hearing loss from people who use Kazakh-Russian Sign Language, exactly the group an AI translator would serve.</div>
+    </div>
+
+    <h3>How far can the numbers be trusted?</h3>
+    <p>The official figure of 30,497 should be read as a <strong>floor</strong>, not as the real size of the deaf community. It shows how many people the state has formally recognised, not how many need help. NGO estimates of 150,000–200,000 are closer to community knowledge but don't come with published methods, and they changed by 50,000 between 2024 and 2026. The WHO-based figure is an upper bound that includes many older people who will never learn sign language.</p>
+    <p>For this project, that uncertainty matters in a specific way: <strong>the smaller the official number, the easier it is for the state to treat the problem as small.</strong> A system designed for 30,000 people with 200 interpreters already covers only a fraction of the promised hours. If the real number is five times higher, the gap is far bigger than any official document admits. Any AI solution has to be designed for the population we cannot see, not only for the one the register counts.</p>
+
+    <h3>Sources</h3>
+    <ul class="sources">
+      <li>Ministry of Labour and Social Protection, portal "Social protection of persons with disabilities": statistics by region, data as of 22.11.2026 (collected by the author). <a href="https://inva.gov.kz/ru/highcharts">Link</a></li>
+      <li>Kazakhstanskaya Pravda (2023). Услышьте нас! <a href="https://kazpravda.kz/n/uslyshte-nas-sb/">Link</a></li>
+      <li>Kazakhstanskaya Pravda (2026). Жестовый язык может обрести официальный статус. <a href="https://kazpravda.kz/n/zhestovyy-yazyk-mozhet-obresti-ofitsialnyy-status/">Link</a></li>
+      <li>24.kz (2024). Людям с инвалидностью по слуху сложно получить профессию. <a href="https://24.kz/ru/news/social/675566-lyudyam-s-invalidnostyu-po-slukhu-slozhno-poluchit-professiyu">Link</a></li>
+      <li>24.kz (2026). Сурдопереводчиков не хватает в Казахстане. <a href="https://www.24.kz/ru/news/social/773459-surdoperevodchikov-ne-khvataet-v-kazakhstane">Link</a></li>
+      <li>BES.media. Языковой вопрос коснулся даже глухих. <a href="https://bes.media/news/yazikovoy-vopros-kosnulsya-dazhe-gluhih-pochemu-vse-eshe-net-zhestovogo-kazahskogo/">Link</a></li>
+      <li>WHO (2021). Launch of the World Report on Hearing. <a href="https://www.who.int/news-room/events/detail/2021/03/03/default-calendar/launch-of-the-world-report-on-hearing">Link</a></li>
+      <li>Bureau of National Statistics via 24.kz (2026). Population on 1 October 2026: 20,633,529. <a href="https://24.kz/ru/news/social/803301-naselenie-kazakhstana-izmenilos-gde-zhitelej-stalo-bolshe-a-gde-menshe">Link</a></li>
+    </ul>
   </div>
 </section>
 
@@ -392,6 +476,72 @@ const sI = document.getElementById('sI'), sP = document.getElementById('sP'), sH
 const vI = document.getElementById('vI'), vP = document.getElementById('vP'), vH = document.getElementById('vH');
 [sI, sP, sH].forEach(s => s.addEventListener('input', renderGap));
 renderGap();
+
+/* ---------- Figure 1: how many deaf people ---------- */
+const F1 = [
+  {l:"Society of the Deaf", v:16000, c:"#9cc3d3", d:"<b>~16,000</b>: members of the Kazakhstan Society of the Deaf. Counts only people who joined one organisation."},
+  {l:"Ministry portal (official)", v:30497, c:"#2f5d73", d:"<b>30,497</b>: people with a <em>registered</em> hearing disability (inva.gov.kz, 22.11.2026). Only those who passed the official assessment."},
+  {l:"Ümit centre, 2026", v:150000, c:"#b0715f", d:"<b>~150,000</b>: estimate by the Ümit deaf support centre (2026). No published method."},
+  {l:"Ümit centre, 2024", v:200000, c:"#8a3b2e", d:"<b>~200,000</b>: earlier estimate by the same centre (2024). The estimate changed by 50,000 in two years."},
+  {l:"WHO rate × population", v:1134844, c:"#5b6669", d:"<b>~1.1 million</b>: WHO's global rate of disabling hearing loss (5.5%) applied to Kazakhstan's 20.6 million people. An upper bound: includes many older people who don't use sign language. Author's calculation."}
+];
+let f1scale = 'log';
+function drawF1(){
+  const box = document.getElementById('f1bars'); box.innerHTML = '';
+  const max = Math.max(...F1.map(x=>x.v)), lmin = Math.log10(5000), lmax = Math.log10(max);
+  F1.forEach((x,i) => {
+    const w = f1scale === 'log' ? (Math.log10(x.v)-lmin)/(lmax-lmin)*100 : x.v/max*100;
+    const row = document.createElement('div'); row.className = 'hbar';
+    row.innerHTML = `<div class="lab">${x.l}</div><div class="trk"><div class="bar" style="width:0;background:${x.c}"></div></div><div class="val">${x.v>=1e6?'~1.1M':x.v.toLocaleString('en-US')}</div>`;
+    row.onclick = () => { box.querySelectorAll('.hbar').forEach(r=>r.classList.remove('sel')); row.classList.add('sel'); document.getElementById('f1detail').innerHTML = x.d; };
+    box.appendChild(row);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ row.querySelector('.bar').style.width = Math.max(2,w)+'%'; }));
+  });
+}
+document.querySelectorAll('#fig1 .toggle button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#fig1 .toggle button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  f1scale = b.dataset.scale; drawF1();
+});
+drawF1();
+
+/* ---------- Figure 2: hearing disability by region ---------- */
+const F2 = [
+ ["Turkestan region",3792,74432,102709],["Almaty city",3051,28,60301],["Karaganda region",2544,11731,55928],
+ ["Shymkent",2096,53,44094],["Astana",2050,327,44322],["Zhambyl region",1983,26127,46179],
+ ["Almaty region",1924,36538,45162],["Mangystau region",1214,16848,35593],["Aktobe region",1190,8380,32888],
+ ["Pavlodar region",1168,8708,30454],["Akmola region",1159,13084,30354],["Kyzylorda region",1154,18113,35647],
+ ["Atyrau region",1104,10609,28548],["Zhetisu region",1058,11931,25693],["Kostanay region",1057,11159,29866],
+ ["East Kazakhstan",1007,11197,29101],["North Kazakhstan",944,12879,23640],["Abai region",832,10444,24240],
+ ["West Kazakhstan",819,12788,26768],["Ulytau region",351,2049,11114]
+].map(([n,h,r,t])=>({n,h,rs:r/t}));
+function ruralColor(s){ // sequential: pale sand (urban) -> deep red (rural)
+  const A=[226,208,196],C=[138,59,46],t=Math.min(1,s/0.85),l=(a,b)=>Math.round(a+(b-a)*t);
+  return `rgb(${l(A[0],C[0])},${l(A[1],C[1])},${l(A[2],C[2])})`;
+}
+let f2sort = 'count';
+function drawF2(){
+  const box = document.getElementById('f2bars'); box.innerHTML = '';
+  const data = [...F2].sort((a,b)=> f2sort==='count' ? b.h-a.h : b.rs-a.rs);
+  const max = Math.max(...F2.map(x=>x.h));
+  data.forEach(x => {
+    const row = document.createElement('div'); row.className = 'hbar';
+    row.innerHTML = `<div class="lab">${x.n}</div><div class="trk"><div class="bar" style="width:0;background:${ruralColor(x.rs)}"></div></div><div class="val">${x.h.toLocaleString('en-US')}</div>`;
+    const show = () => {
+      box.querySelectorAll('.hbar').forEach(r=>r.classList.remove('sel')); row.classList.add('sel');
+      let extra = '';
+      if (['Almaty city','Almaty region','Zhetisu region'].includes(x.n)) extra = ' <br><span style="color:var(--accent)">Almaty city + Almaty region + Zhetisu officially total <b>6,033</b>. The Ümit centre says <b>30,000</b> live in Almaty and Almaty region alone.</span>';
+      document.getElementById('f2detail').innerHTML = `<b>${x.n}</b>: ${x.h.toLocaleString('en-US')} people with a registered hearing disability (${(x.h/30497*100).toFixed(1)}% of the national total). ${Math.round(x.rs*100)}% of all people with disabilities in this region live in villages.${extra}`;
+    };
+    row.onmouseenter = show; row.onclick = show;
+    box.appendChild(row);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ row.querySelector('.bar').style.width = (x.h/max*100)+'%'; }));
+  });
+}
+document.querySelectorAll('#fig2 .toggle button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#fig2 .toggle button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  f2sort = b.dataset.sort; drawF2();
+});
+drawF2();
 
 /* ---------- progress bar, active nav, reveal ---------- */
 const prog = document.getElementById('progress');
