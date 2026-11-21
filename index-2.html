@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sixty Hours a Year — Sign language, AI and the right to be understood in Kazakhstan</title>
+<style>
+  :root{
+    --paper:#f6f4ef; --ink:#1f2a2e; --muted:#5b6669; --rule:#ddd8cc;
+    --accent:#8a3b2e; --accent-soft:#f1e3df; --blue:#2f5d73; --blue-soft:#dfe9ee;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.7;font-size:18px}
+  .sans{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(246,244,239,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+  nav .inner{max-width:1040px;margin:0 auto;display:flex;gap:6px;align-items:center;padding:10px 24px;overflow-x:auto}
+  nav .brand{font:700 14px/1 system-ui,sans-serif;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-right:auto;white-space:nowrap;text-decoration:none}
+  nav a.step{font:500 14px/1 system-ui,sans-serif;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:6px;white-space:nowrap}
+  nav a.step:hover{background:var(--accent-soft);color:var(--ink)}
+  nav a.step span{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;background:var(--rule);color:var(--ink);font-size:11px;margin-right:6px}
+  nav a.step.done span{background:var(--accent);color:#fff}
+
+  /* hero */
+  header.hero{max-width:1040px;margin:0 auto;padding:12vh 24px 8vh}
+  .tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .hero h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;margin:.4em 0 .3em;letter-spacing:-.01em}
+  .hero p.lede{font-size:1.3rem;color:var(--muted);max-width:640px;margin:0}
+  .counter{display:flex;gap:40px;flex-wrap:wrap;margin-top:48px}
+  .counter div{border-left:3px solid var(--accent);padding-left:14px}
+  .counter b{display:block;font-size:2.2rem;line-height:1.1}
+  .counter small{font:500 13px/1.4 system-ui,sans-serif;color:var(--muted)}
+
+  /* sections */
+  section{border-top:1px solid var(--rule)}
+  section .inner{max-width:720px;margin:0 auto;padding:72px 24px}
+  .num{font:700 13px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  h2{font-size:2.2rem;line-height:1.15;margin:.3em 0 .8em}
+  h3{font-size:1.3rem;margin:2em 0 .4em}
+  .opening{font-size:1.2rem;font-style:italic;border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:0 0 2em;color:#34403f}
+  .question{background:var(--accent-soft);border-radius:10px;padding:22px 26px;font-size:1.15rem;margin:1.2em 0}
+  .note{font:400 14px/1.5 system-ui,sans-serif;color:var(--muted)}
+
+  /* gap chart */
+  .chart{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:24px 26px;margin:1.8em 0}
+  .chart h4{font:700 15px/1.3 system-ui,sans-serif;margin:0 0 4px}
+  .chart .sub{font:400 13px/1.4 system-ui,sans-serif;color:var(--muted);margin:0 0 18px}
+  .bar-row{font:500 14px/1.3 system-ui,sans-serif;margin:14px 0}
+  .bar-row .label{display:flex;justify-content:space-between;margin-bottom:6px}
+  .track{height:30px;background:var(--rule);border-radius:6px;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .fill.need{width:100%;background:var(--blue)}
+  .fill.have{width:20%;background:var(--accent)}
+
+  /* coming soon */
+  .soon .inner{opacity:.75}
+  .soon .placeholder{border:2px dashed var(--rule);border-radius:12px;padding:28px;color:var(--muted);font:400 15px/1.5 system-ui,sans-serif}
+
+  /* sources */
+  .sources{font:400 14px/1.6 system-ui,sans-serif;color:var(--muted)}
+  .sources li{margin-bottom:6px}
+  .sources a{color:var(--blue);word-break:break-word}
+
+  footer{border-top:1px solid var(--rule);padding:40px 24px;text-align:center;font:400 13px/1.5 system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="brand" href="#top">Sixty Hours a Year</a>
+    <a class="step done" href="#problem"><span>1</span>Problem</a>
+    <a class="step" href="#data"><span>2</span>Data</a>
+    <a class="step" href="#research"><span>3</span>Research</a>
+    <a class="step" href="#solution"><span>4</span>AI &amp; Costs</a>
+    <a class="step" href="#verdict"><span>✓</span>Verdict</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <span class="tag">PLS 419 · Final project · An AI answer for Kazakhstan</span>
+  <h1>Sixty Hours<br>a Year</h1>
+  <p class="lede">Sign language, artificial intelligence, and the right to be understood in Kazakhstan.</p>
+  <div class="counter">
+    <div><b>60</b><small>hours of sign language<br>interpretation per person, per year</small></div>
+    <div><b>~200</b><small>sign language interpreters<br>in the whole country</small></div>
+    <div><b>30,000+</b><small>people with hearing<br>impairments</small></div>
+  </div>
+</header>
+
+<!-- SECTION 1 -->
+<section id="problem">
+  <div class="inner">
+    <span class="num">Section 1 · The Problem</span>
+    <h2>Sixty hours a year</h2>
+
+    <p class="opening">Not long ago I met a relative of mine who is deaf, and I realised I didn't even know how to start a conversation with him. That moment stayed with me. If I felt lost for words in one family conversation, what is it like for him at a clinic, at a public service centre, or when he needs to call an ambulance? In Kazakhstan, deaf people get very little public attention, there are few interpreters, and our infrastructure is often not built with them in mind.</p>
+
+    <p>Imagine you have sixty hours a year in which you are allowed to be understood. That is roughly the situation of deaf people in Kazakhstan. The state provides citizens with hearing impairments with 60 hours of sign language interpretation per year, a limit that one Mazhilis deputy said is "not enough even for everyday life" (Tengrinews, 2026). Sixty hours has to cover every doctor's visit, every trip to a public service centre, every meeting with a lawyer, a bank or a school.</p>
+
+    <p>Even those sixty hours are hard to use, because there are very few people to provide them. Kazakhstan has just over 200 sign language interpreters for more than 30,000 people with hearing impairments, about 150 people per interpreter (24.kz, 2026). In Karaganda, for example, 20 specialists serve about 350 people with hearing disabilities (Informburo). The country has no institution that trains sign language interpreters; anyone can learn through private courses, and there is no unified certification (24.kz).</p>
+
+    <p>A rough calculation shows how tight the system is. If 30,000 people each used their full 60 hours, that would be 1.8 million interpreting hours a year. Two hundred interpreters working full-time (about 1,800 hours each) can supply around 360,000. In other words, even on paper the current workforce could cover only about one fifth of the hours the state has promised.</p>
+
+    <div class="chart">
+      <h4>The promise vs. the capacity</h4>
+      <p class="sub">Interpreting hours per year, Kazakhstan (author's estimate)</p>
+      <div class="bar-row">
+        <div class="label"><span>Hours promised (30,000 people × 60 h)</span><b>1,800,000</b></div>
+        <div class="track"><div class="fill need"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="label"><span>Hours ~200 interpreters can supply (× 1,800 h)</span><b>~360,000</b></div>
+        <div class="track"><div class="fill have"></div></div>
+      </div>
+      <p class="note">Own estimate based on stated assumptions (30,000 people; 200 full-time interpreters at ~1,800 working hours a year), not an official figure. Sources: 24.kz (2026); Tengrinews (2026).</p>
+    </div>
+
+    <h3>Who is affected, and how</h3>
+    <p>The people affected are deaf and hard-of-hearing citizens, but the barrier touches every part of their lives. A TengriHealth investigation found that even calling an ambulance or booking a doctor's appointment remains difficult for thousands of people with hearing impairments, and that digital services have not solved the problem (Tengrinews, 2026). Deputies and the Kazakhstan Society of the Deaf describe the same pattern in education, employment, public services, culture and sport (Kazinform, 2026).</p>
+
+    <p>The problem is also changing. In June 2026, amendments to legally recognise sign language were under consideration in the Senate. Supporters call legal status the starting point for solving everything else (Kazinform, 2026). If it passes, the state will have committed to equal access in sign language without having the people to deliver it. The gap between the promise and the capacity is about to get bigger, not smaller.</p>
+
+    <p>There is a language politics layer too. Kazakhstan's deaf community uses Kazakh-Russian Sign Language, and deaf activists have asked why a Kazakh sign language still does not formally exist, pushing to have sign language written into the Law on Languages (BES.media). The language question that shapes so much of Kazakhstan's public life reaches even the people who don't speak with their voices.</p>
+
+    <h3>The social-science question</h3>
+    <p>This is usually framed as a disability or welfare issue: more grants, more interpreters, more hours. This project frames it as a question about <strong>the state, rights and capacity</strong>:</p>
+    <div class="question">When a state promises equal access but rations it through a scarce human workforce, who decides how much understanding a citizen is entitled to? And can AI expand that access without becoming a cheap excuse to stop investing in interpreters and in deaf people's own language rights?</div>
+    <p>The second half of the question matters. A sign language AI could reach people that 200 interpreters never will. It could also give officials a reason to say the problem is solved when it isn't. That tension, between scale and dignity, runs through the rest of this project.</p>
+
+    <h3>Sources</h3>
+    <ul class="sources">
+      <li>Tengrinews (2026). Deputy calls for another language to be legally recognized in Kazakhstan. <a href="https://en.tengrinews.kz/kazakhstan_news/deputy-calls-for-another-language-to-be-legally-recognized-271578/">Link</a></li>
+      <li>24.kz (2026). Сурдопереводчиков не хватает в Казахстане. <a href="https://www.24.kz/ru/news/social/773459-surdoperevodchikov-ne-khvataet-v-kazakhstane">Link</a></li>
+      <li>24.kz. Единую аттестацию для сурдопереводчиков предлагают ввести в Казахстане. <a href="https://24.kz/ru/news/social/668431-edinuyu-attestatsiyu-dlya-surdoperevodchikov-predlagayut-vvesti-v-kazakhstane">Link</a></li>
+      <li>Informburo. В Караганде сотни инвалидов остались без услуг сурдопереводчиков. <a href="https://informburo.kz/novosti/v-karagande-sotni-invalidov-ostalis-bez-uslug-surdoperevodchikov.html">Link</a></li>
+      <li>Tengrinews / TengriHealth (2026). «Даже запись к врачу — квест». <a href="https://tengrinews.kz/tengri-health/article/daje-zapis-vrachu-kvest-kazahstantsyi-narusheniem-sluha-4136/">Link</a></li>
+      <li>Kazinform (2026). Статус жестового языка могут официально закрепить в Казахстане. <a href="https://www.inform.kz/ru/status-zhestovogo-yazika-mogut-ofitsialno-zakrepit-v-kazahstane-c953f0fe">Link</a></li>
+      <li>BES.media. Языковой вопрос коснулся даже глухих: почему всё ещё нет жестового казахского. <a href="https://bes.media/news/yazikovoy-vopros-kosnulsya-dazhe-gluhih-pochemu-vse-eshe-net-zhestovogo-kazahskogo/">Link</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section id="data" class="soon">
+  <div class="inner">
+    <span class="num">Section 2 · Background &amp; Data</span>
+    <h2>What the numbers show, and what they hide</h2>
+    <div class="placeholder">Coming soon: the data landscape, an original chart, and where the data falls silent.</div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section id="research" class="soon">
+  <div class="inner">
+    <span class="num">Section 3 · Current State of Research</span>
+    <h2>How researchers have studied this</h2>
+    <div class="placeholder">Coming soon: research organised by approach, ending with the gap this project addresses.</div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section id="solution" class="soon">
+  <div class="inner">
+    <span class="num">Section 4 · The AI-Assisted Solution, and What It Would Cost</span>
+    <h2>A translator, and its bill</h2>
+    <div class="placeholder">Coming soon: the proposed system, real case studies, and its environmental, economic, labour, governance and data-ethics costs.</div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict" class="soon">
+  <div class="inner">
+    <span class="num">Verdict</span>
+    <h2>Should Kazakhstan build it?</h2>
+    <div class="placeholder">Coming soon.</div>
+  </div>
+</section>
+
+<footer>
+  PLS 419 · AI from a Social Science Perspective · Nazarbayev University · Fall 2026<br>
+  AI transparency statement: coming soon.
+</footer>
+
+</body>
+</html>
