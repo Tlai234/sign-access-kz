@@ -6,7 +6,7 @@
 <title>Sixty Hours a Year — Sign language, AI and the right to be understood in Kazakhstan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Caveat:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f6f4ef; --ink:#1f2a2e; --muted:#5b6669; --rule:#ddd8cc;
@@ -266,10 +266,149 @@
   footer a{color:var(--amber)!important}
   .counter small{line-height:1.45;display:block}
   @media (max-width:820px){.herogrid{grid-template-columns:1fr;gap:28px}}
+
+  /* ===== illustration layer ===== */
+  #intro{display:grid;grid-template-columns:1fr;align-items:center}
+  .scenewrap{display:none}
+  @media (min-width:900px){
+    #intro.withscene{grid-template-columns:1.05fr .95fr;gap:40px}
+    #intro.withscene .scenewrap{display:block;grid-column:2;grid-row:1}
+    #intro.withscene .stage{grid-column:1;grid-row:1}
+  }
+  .clinic{width:100%;height:auto;border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .clinic .emptychair{opacity:0;transition:opacity .8s}
+  .clinic.st2 .emptychair{opacity:1}
+  .clinic.st2 .qmark{opacity:0}
+  .clinic .qmark{transition:opacity .5s;animation:bob 2.2s ease-in-out infinite;transform-origin:160px 215px}
+  @keyframes bob{50%{transform:translateY(-6px)}}
+  .clinic .scrib{stroke-dasharray:130;stroke-dashoffset:130;animation:write 2.4s ease-in-out infinite}
+  .clinic .s2{animation-delay:.4s}.clinic .s3{animation-delay:.8s}
+  @keyframes write{40%,70%{stroke-dashoffset:0}100%{stroke-dashoffset:-130}}
+  .clinic .clockhand{transform-origin:460px 85px;animation:tick 6s steps(12) infinite}
+  @keyframes tick{to{transform:rotate(360deg)}}
+
+  /* tickets */
+  .tickets{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;margin-bottom:14px}
+  .tickets i{display:block;height:30px;border-radius:3px;background:#fdf3dd;border:1px dashed #d9b15f;position:relative;transition:transform .45s cubic-bezier(.3,1.6,.5,1),opacity .45s}
+  .tickets i::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#e3c47e}
+  .tickets i.torn{transform:rotate(-8deg) scale(.82);opacity:.12;background:transparent}
+  .tickets i.over{background:var(--accent);border:none;opacity:1;transform:none}
+
+  /* tile map */
+  .viewtoggle{margin-right:8px}
+  .tilemap{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:6px 0 22px}
+  .tile{aspect-ratio:1/0.9;border-radius:10px;padding:7px 8px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:Inter,sans-serif;color:#16212b;border:none;text-align:left}
+  .tile:hover,.tile.sel{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 22px -8px rgba(0,0,0,.4);z-index:2}
+  .tile .ab{font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.04em;opacity:.85}
+  .tile .v{font:800 clamp(11px,1.6vw,16px)/1 Unbounded,Inter,sans-serif}
+  .tile.dark{color:#fff}
+  .tile.city{border-radius:50%;aspect-ratio:1;justify-content:center;align-items:center;text-align:center;outline:2px dashed var(--ink);outline-offset:-2px}
+  @media (max-width:600px){.tile .ab{font-size:9px}.tile{padding:4px}}
+
+  /* venn */
+  .venn{margin:1.6em auto;max-width:520px}
+  .venn svg{width:100%;height:auto}
+  .vc{mix-blend-mode:multiply;stroke:#fff;stroke-width:2}
+  .v1{fill:#bcd8e4}.v2{fill:#f4c9bd}.v3{fill:#f6dea6}
+  .vt{font:700 14px Inter,sans-serif;fill:#16212b;text-anchor:middle}
+  .vs{font:500 11px "JetBrains Mono",monospace;fill:#4b5960;text-anchor:middle}
+  .vgap{fill:#16212b}.vq{font:800 30px Unbounded,Inter,sans-serif;fill:#f2b64a;text-anchor:middle}
+  .venn figcaption{font:400 14px/1.5 Inter,sans-serif;color:var(--muted);text-align:center;margin-top:8px}
+
+  /* ================= THEME: soft & warm · newspaper · handwritten · hands ================= */
+  :root{--paper:#FFF4EC;--ink:#2E2A33;--muted:#6B6470;--rule:#E9D9CC;--accent:#D9704E;--accent-soft:#FCE3D8;--blue:#4F7A5A;--blue-soft:#E5F0E7;--amber:#F7A889;--night:#2E2A33;--lilac:#B9A7E0;--lilac-d:#6E5AA8;--sage:#8DB596}
+  body{background:var(--paper);font-family:"Source Serif 4",Georgia,serif;color:var(--ink)}
+  h1,h2,.bignum,.counter b,.case h4,.widget h4,h3{font-family:Manrope,Inter,sans-serif!important;letter-spacing:-.02em}
+  h2{font-weight:800}
+  .tag,.num,.approach .tagline,.case span{color:var(--lilac-d)!important}
+  nav{background:rgba(255,244,236,.94);border-bottom:1px solid var(--ink)}
+  nav .brand{color:var(--ink);font-family:Manrope,sans-serif;font-weight:800}
+  nav a.step{color:var(--ink);border-color:var(--rule);background:#fff}
+  nav a.step span,nav a.step.done span{background:var(--accent-soft);color:var(--accent)}
+  nav a.step.active{background:var(--lilac);border-color:var(--lilac);color:var(--ink)}
+  nav a.step.active span{background:#fff;color:var(--lilac-d)}
+  #progress{background:var(--accent)}
+
+  /* intro: warm paper instead of night */
+  .introband{background:linear-gradient(160deg,#FFF4EC 0%,#FBE6DA 60%,#F1E9FA 100%);color:var(--ink)}
+  .introband::before{background:none}
+  .introband::after{background:radial-gradient(circle,rgba(141,181,150,.35),transparent 65%)}
+  .introband .tag{color:var(--lilac-d)}
+  .introband .scene.small{color:var(--accent)}
+  .introband .bubble{background:#fff;border-color:var(--rule);box-shadow:0 18px 40px -20px rgba(46,42,51,.35)}
+  .introband .bubble p{color:#B3A8BE}.introband .bubble .who{color:var(--muted)}
+  .introband .reply .verdict{color:var(--accent)}
+  .introband .cta{background:var(--ink);color:#fff}.introband .cta:hover{background:var(--accent);color:#fff}
+  .introband .skip{color:var(--muted)}
+  .introband .lede{color:var(--muted)!important}
+  #st3 h1{color:var(--ink)}#st3 h1 em{color:var(--accent)}
+  .introband .counter div{border-left:1px solid var(--ink);padding-left:16px}
+  .introband .counter b{color:var(--ink)}.introband .counter small{color:var(--muted)}
+  .introband .summary div{background:transparent;border:none;border-top:2px solid var(--ink);border-radius:0;color:var(--ink);padding:14px 0 0}
+  .introband .summary span{color:var(--accent)}
+  .clinic{box-shadow:0 24px 60px -28px rgba(110,90,168,.55)}
+  .masthead{display:flex;justify-content:space-between;align-items:center;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);padding:8px 0;margin-bottom:34px;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .masthead b{font:800 clamp(18px,2.4vw,26px)/1 Manrope,sans-serif;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+  .hourglass{background:#fff;border:1px solid var(--rule);box-shadow:0 18px 40px -24px rgba(46,42,51,.35)}
+  .hg-head{color:var(--muted)}.hg-head b{color:var(--accent)}.hg-head b.out{color:var(--lilac-d)}
+  .hg-dots i{background:var(--amber);box-shadow:0 0 0 3px #FFE7DA}
+  .hg-dots i.used{background:#EFE4DA;box-shadow:none}
+  .hourglass figcaption{color:var(--muted)}
+  .hg-replay{color:var(--ink);border-color:var(--rule)}.hg-replay:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* newspaper layout */
+  section:nth-of-type(even){background:transparent}
+  section .inner{max-width:760px}
+  .sechead{border-top:3px double var(--ink);padding-top:14px}
+  .bignum{-webkit-text-stroke:0;color:var(--ink);font-weight:800}
+  .secicon{width:44px;height:58px;color:var(--lilac)}
+  .sechead .num{color:var(--accent)!important}
+  h2{border-bottom:1px solid var(--rule);padding-bottom:.4em}
+  h3{border-top:1px solid var(--ink);padding-top:.7em;font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em}
+  .dropcap::first-letter{float:left;font:800 4.2em/.82 Manrope,sans-serif;margin:.06em .1em 0 0;color:var(--accent)}
+  .pull{margin:1.8em 0;padding:18px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font:italic 400 1.7rem/1.3 "Source Serif 4",Georgia,serif;color:var(--ink)}
+  .pull cite{display:block;margin-top:10px;font:500 13px/1.4 Inter,sans-serif;font-style:normal;color:var(--muted)}
+  .opening{background:#fff;border-left:4px solid var(--sage);box-shadow:none;border-radius:0 12px 12px 0}
+  .question{background:#EFE9FA;color:var(--ink);border-radius:4px;border-left:4px solid var(--lilac-d)}
+  .question::before{color:var(--accent)}
+  .widget,.approach,.case,.silences div,.chart{border-radius:6px;box-shadow:none;border:1px solid var(--rule);background:#fff}
+  .widget{border-top:3px solid var(--ink)}
+  .approach .tagline{color:var(--blue)!important}
+  .silences div{border-left:4px solid var(--amber)}
+  .toggle button.on{background:var(--ink)}
+  .tier.on{background:var(--ink)}.tier[data-t="2"].on{background:var(--accent)}
+  .billgrid button.on{background:var(--ink)}
+  .sev.h{background:var(--accent)}.sev.m{background:#F7D3A8}.sev.l{background:var(--blue-soft);color:var(--blue)}
+  .vresult.no{background:var(--accent-soft);color:#A4472A}.vresult.part{background:#FFF0D6;color:#8A5A12}.vresult.yes{background:var(--blue-soft);color:var(--blue)}
+  .meter .used{background:var(--sage)}.meter{background:#F3EAE2}
+  .people i.on{background:var(--sage)}
+  .v1{fill:#CFE3D4}.v2{fill:#FBD3C2}.v3{fill:#E2D8F4}.vgap{fill:var(--ink)}.vq{fill:var(--amber)}
+  .tile.city{outline-color:var(--ink)}
+  .ruralkey i{background:linear-gradient(90deg,#FDE2D0,#6E5AA8)}
+  footer{background:var(--ink);color:#CFC6D6}footer a{color:var(--amber)!important}
+
+  /* handwritten notes */
+  .hnote{display:block;font:700 1.45rem/1.1 Caveat,cursive;color:var(--accent);transform:rotate(-2deg);margin:.6em 0 .2em .4em}
+  .hn-dots{margin:0 0 6px 10px;color:var(--lilac-d)}
+  .hn-dots{position:absolute;top:-38px;left:10px;white-space:nowrap}
+  .hg-head{flex-wrap:wrap;gap:4px 12px}
+  .hourglass{position:relative}
+
+  /* hand dividers */
+  .handrule{display:flex;align-items:center;gap:14px;max-width:760px;margin:30px auto 0;padding:0 24px;color:var(--sage)}
+  .handrule i{flex:1;height:1px;background:var(--ink);opacity:.35}
+  .handrule .hand{width:26px;height:34px}
+  .handrule .hand:nth-of-type(2){color:var(--lilac)}.handrule .hand:nth-of-type(3){color:var(--amber)}
 </style>
 </head>
 <body>
 <div id="progress"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <symbol id="h-open" viewBox="0 0 64 84"><g fill="currentColor"><rect x="14" y="38" width="38" height="40" rx="16"/><rect x="14" y="12" width="9" height="36" rx="4.5"/><rect x="24" y="4" width="9" height="42" rx="4.5"/><rect x="34" y="7" width="9" height="40" rx="4.5"/><rect x="44" y="16" width="8" height="32" rx="4"/><rect x="2" y="40" width="9" height="28" rx="4.5" transform="rotate(-32 6 54)"/></g></symbol>
+ <symbol id="h-point" viewBox="0 0 64 84"><g fill="currentColor"><rect x="14" y="38" width="38" height="40" rx="16"/><rect x="18" y="4" width="10" height="44" rx="5"/><rect x="29" y="32" width="9" height="16" rx="4.5"/><rect x="38" y="33" width="9" height="15" rx="4.5"/><rect x="45" y="36" width="8" height="12" rx="4"/><rect x="4" y="44" width="9" height="22" rx="4.5" transform="rotate(-25 8 55)"/></g></symbol>
+ <symbol id="h-two" viewBox="0 0 64 84"><g fill="currentColor"><rect x="14" y="38" width="38" height="40" rx="16"/><rect x="14" y="8" width="9" height="40" rx="4.5" transform="rotate(-10 18 28)"/><rect x="27" y="6" width="9" height="42" rx="4.5" transform="rotate(8 31 27)"/><rect x="37" y="33" width="9" height="15" rx="4.5"/><rect x="45" y="36" width="8" height="12" rx="4"/><rect x="4" y="44" width="9" height="22" rx="4.5" transform="rotate(-25 8 55)"/></g></symbol>
+ <symbol id="h-fist" viewBox="0 0 64 84"><g fill="currentColor"><rect x="12" y="30" width="42" height="48" rx="18"/><rect x="14" y="24" width="38" height="16" rx="8"/><rect x="2" y="40" width="9" height="26" rx="4.5" transform="rotate(-20 6 53)"/></g></symbol>
+</defs></svg>
 
 <nav>
   <div class="inner">
@@ -287,6 +426,71 @@
 <div id="intro">
   <button class="skip" id="skip">Skip intro →</button>
 
+  <div class="scenewrap" id="scenewrap"><svg class="clinic" viewBox="0 0 600 420" role="img" aria-label="Illustration: a doctor talks to a deaf patient across a desk; the interpreter's chair is empty">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9A7E0"/><stop offset="1" stop-color="#F7A889" stop-opacity=".8"/></linearGradient>
+    <linearGradient id="lamp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A889" stop-opacity=".35"/><stop offset="1" stop-color="#F7A889" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="600" height="420" rx="22" fill="#F6E6D9"/>
+  <rect y="300" width="600" height="120" fill="#EBD3C3"/>
+  <!-- window -->
+  <rect x="40" y="40" width="200" height="150" rx="6" fill="url(#sky)"/>
+  <path d="M40 190 L95 120 L130 150 L170 95 L240 175 L240 190Z" fill="#8DB596"/>
+  <path d="M160 108 l10 -13 l9 12 z" fill="#FFFFFF" opacity=".85"/>
+  <rect x="40" y="40" width="200" height="150" rx="6" fill="none" stroke="#6E5AA8" stroke-width="8"/>
+  <line x1="140" y1="40" x2="140" y2="190" stroke="#6E5AA8" stroke-width="6"/>
+  <!-- poster + clock -->
+  <rect x="290" y="52" width="70" height="92" rx="4" fill="#FFFFFF"/>
+  <rect x="300" y="64" width="50" height="8" rx="2" fill="#D9704E"/>
+  <rect x="300" y="80" width="50" height="4" rx="2" fill="#E3D3C6"/><rect x="300" y="90" width="40" height="4" rx="2" fill="#E3D3C6"/><rect x="300" y="100" width="45" height="4" rx="2" fill="#E3D3C6"/>
+  <text x="325" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#8F8494">ДЕНСАУЛЫҚ</text>
+  <circle cx="460" cy="85" r="30" fill="#FFFFFF"/><circle cx="460" cy="85" r="30" fill="none" stroke="#6E5AA8" stroke-width="4"/>
+  <line x1="460" y1="85" x2="460" y2="66" stroke="#2E2A33" stroke-width="3" stroke-linecap="round"/>
+  <line class="clockhand" x1="460" y1="85" x2="476" y2="92" stroke="#D9704E" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- lamp -->
+  <path d="M430 0 v20" stroke="#6E5AA8" stroke-width="3"/><path d="M410 20 h40 l-8 14 h-24z" fill="#F7A889"/>
+  <path d="M414 34 h32 l90 230 h-212z" fill="url(#lamp)"/>
+  <!-- doctor -->
+  <g class="doctor">
+    <rect x="395" y="190" width="90" height="120" rx="34" fill="#FFFFFF"/>
+    <path d="M440 200 v80" stroke="#E5E0EA" stroke-width="3"/>
+    <rect x="425" y="190" width="30" height="24" rx="6" fill="#B9A7E0"/>
+    <circle cx="440" cy="160" r="30" fill="#d9a37f"/>
+    <path d="M410 152 q30 -36 60 0 q-6 -26 -30 -26 q-24 0 -30 26z" fill="#3B2A25"/>
+    <path d="M418 236 q-14 30 6 48" stroke="#8F8494" stroke-width="3" fill="none"/>
+    <circle cx="425" cy="286" r="6" fill="#8F8494"/>
+  </g>
+  <!-- speech bubble -->
+  <g class="talk">
+    <path d="M460 102 h120 a12 12 0 0 1 12 12 v46 a12 12 0 0 1 -12 12 h-86 l-18 16 l2 -16 h-18 a12 12 0 0 1 -12 -12 v-46 a12 12 0 0 1 12 -12z" fill="#FFFFFF"/>
+    <path class="scrib s1" d="M466 124 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0" stroke="#B3A8BE" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path class="scrib s2" d="M466 140 q10 -8 20 0 t20 0 t20 0 t20 0" stroke="#B3A8BE" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path class="scrib s3" d="M466 156 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0" stroke="#B3A8BE" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- desk + monitor -->
+  <rect x="280" y="270" width="280" height="22" rx="6" fill="#B98E74"/>
+  <rect x="295" y="292" width="16" height="96" fill="#A57B62"/><rect x="520" y="292" width="16" height="96" fill="#A57B62"/>
+  <rect x="300" y="210" width="80" height="54" rx="5" fill="#6E5AA8"/><rect x="306" y="216" width="68" height="42" rx="3" fill="#8DB596"/>
+  <rect x="314" y="226" width="40" height="4" rx="2" fill="#F3FAF4"/><rect x="314" y="236" width="52" height="4" rx="2" fill="#F3FAF4" opacity=".6"/>
+  <rect x="334" y="264" width="12" height="8" fill="#6E5AA8"/>
+  <rect x="470" y="252" width="44" height="18" rx="3" fill="#FFFFFF"/><rect x="476" y="258" width="26" height="3" fill="#CFC6D6"/>
+  <!-- patient (seen from behind) -->
+  <g class="patient" transform="translate(-50 0)">
+    <rect x="120" y="300" width="96" height="110" rx="12" fill="#B9A7E0"/>
+    <rect x="96" y="250" width="110" height="130" rx="48" fill="#D9704E"/>
+    <circle cx="151" cy="222" r="34" fill="#3B2A25"/>
+    <path d="M118 214 q33 -40 66 0" fill="#4A362F"/>
+    <circle cx="117" cy="226" r="7" fill="#d9a37f"/>
+  </g>
+  <g class="qmark"><circle cx="160" cy="215" r="20" fill="#F7A889"/><text x="160" y="223" text-anchor="middle" font-family="Unbounded,Inter,sans-serif" font-weight="800" font-size="22" fill="#2E2A33">?</text></g>
+  <!-- empty interpreter chair (stage 2) -->
+  <g class="emptychair">
+    <rect x="186" y="322" width="62" height="66" rx="10" fill="none" stroke="#F7A889" stroke-width="3" stroke-dasharray="7 6"/>
+    <rect x="180" y="384" width="74" height="10" rx="4" fill="none" stroke="#F7A889" stroke-width="3" stroke-dasharray="7 6"/>
+    <rect x="166" y="288" width="104" height="26" rx="6" fill="#D9704E"/>
+    <text x="218" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="10.5" fill="#fff">NO INTERPRETER</text>
+  </g>
+</svg></div>
   <div class="stage show" id="st1">
     <span class="tag">An illustrative scene</span>
     <p class="scene">You are at a polyclinic in Kazakhstan.<br>The doctor is explaining your test results.</p>
@@ -307,13 +511,15 @@
   </div>
 
   <div class="stage" id="st3">
+    <div class="masthead"><span>PLS 419 · Nazarbayev University</span><b>The Sixty Hours</b><span>Wednesday, 25 November 2026</span></div>
     <div class="herogrid">
      <div>
-      <span class="tag">PLS 419 · Final project · An AI answer for Kazakhstan</span>
+      <span class="tag">Special report · An AI answer for Kazakhstan</span>
       <h1>Sixty <em>Hours</em><br>a Year</h1>
       <p class="lede">Sign language, artificial intelligence, and the right to be understood in Kazakhstan.</p>
      </div>
      <figure class="hourglass" aria-label="Sixty dots, one for each hour of state-paid interpreting a year">
+      <span class="hnote hn-dots">every dot = 1 hour ↴</span>
       <div class="hg-head"><span>One year of interpreting</span><b id="hgLeft">60 h left</b></div>
       <div class="hg-dots" id="hgDots"></div>
       <figcaption>Each dot is one hour. Watch a year of doctor's visits, ЦОН trips and school meetings use them up.</figcaption>
@@ -340,16 +546,19 @@
 <!-- SECTION 1 -->
 <section id="problem">
   <div class="inner">
-    <div class="sechead"><span class="bignum">01</span><span class="num">Section 1 · The Problem</span></div>
+    <div class="sechead"><span class="bignum">01</span><svg class="hand secicon"><use href="#h-open"/></svg><span class="num">Section 1 · The Problem</span></div>
     <h2>Sixty hours a year</h2>
 
+    <span class="hnote">why I chose this topic ↴</span>
     <p class="opening">Not long ago I met a relative of mine who is deaf, and I realised I didn't even know how to start a conversation with him. That moment stayed with me. If I felt lost for words in one family conversation, what is it like for him at a clinic, at a public service centre, or when he needs to call an ambulance? In Kazakhstan, deaf people get very little public attention, there are few interpreters, and our infrastructure is often not built with them in mind.</p>
 
-    <p>Imagine you have sixty hours a year in which you are allowed to be understood. That is roughly the situation of deaf people in Kazakhstan. The state provides citizens with hearing impairments with 60 hours of sign language interpretation per year, a limit that one Mazhilis deputy said is "not enough even for everyday life" (Tengrinews, 2026). Sixty hours has to cover every doctor's visit, every trip to a public service centre, every meeting with a lawyer, a bank or a school.</p>
+    <p class="dropcap">Imagine you have sixty hours a year in which you are allowed to be understood. That is roughly the situation of deaf people in Kazakhstan. The state provides citizens with hearing impairments with 60 hours of sign language interpretation per year, a limit that one Mazhilis deputy said is "not enough even for everyday life" (Tengrinews, 2026). Sixty hours has to cover every doctor's visit, every trip to a public service centre, every meeting with a lawyer, a bank or a school.</p>
+    <blockquote class="pull">“Not enough even for everyday life.”<cite>A Mazhilis deputy on the 60-hour limit (Tengrinews, 2026)</cite></blockquote>
 
     <div class="widget reveal" id="budget">
       <h4>Try it: spend your 60 hours</h4>
       <p class="sub">Add the situations a deaf person might need an interpreter for in one year. How long do the 60 hours last?</p>
+      <div class="tickets" id="tickets"></div>
       <div class="meter"><div class="used" id="usedBar"></div><div class="txt"><span id="usedTxt">0 h used</span><span id="leftTxt">60 h left</span></div></div>
       <div class="status" id="status">Click + to add a situation.</div>
       <div class="acts" id="acts"></div>
@@ -401,13 +610,14 @@
 </section>
 
 <!-- SECTION 2 -->
+<div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <section id="data">
   <div class="inner">
-    <div class="sechead"><span class="bignum">02</span><span class="num">Section 2 · Background &amp; Data</span></div>
+    <div class="sechead"><span class="bignum">02</span><svg class="hand secicon"><use href="#h-point"/></svg><span class="num">Section 2 · Background &amp; Data</span></div>
     <h2>What the numbers show, and what they hide</h2>
 
     <h3>Who measures what</h3>
-    <p>Several institutions count deaf people in Kazakhstan, and none of them counts the same thing.</p>
+    <p class="dropcap">Several institutions count deaf people in Kazakhstan, and none of them counts the same thing.</p>
     <ul>
       <li><strong>The Ministry of Labour and Social Protection</strong> runs an online portal (inva.gov.kz) that publishes the number of people with a <em>registered</em> disability, by type and region. As of 22 November 2026, it lists <strong>30,497 people with a hearing disability</strong>, out of 728,596 people with any disability, about 4.2%.</li>
       <li><strong>The Bureau of National Statistics</strong> publishes disability totals, but no separate series on deafness or sign language.</li>
@@ -430,9 +640,12 @@
 
     <div class="widget reveal" id="fig2">
       <h4>Figure 2. Registered hearing disability by region</h4>
-      <p class="sub">Bar length = people with a registered hearing disability. Colour = share of all people with disabilities in that region who live in villages. Hover or tap a bar for details.</p>
-      <div class="toggle"><button class="on" data-sort="count">Sort by number</button><button data-sort="rural">Sort by rural share</button></div>
-      <div id="f2bars"></div>
+      <p class="sub">A tile map of Kazakhstan: each tile is a region, placed roughly where it lies. The number is people with a registered hearing disability; the colour is how rural the region is. Tap a tile. Switch to bars to rank them.</p>
+      <div class="toggle viewtoggle"><button class="on" data-view="map">Map</button><button data-view="bars">Bars</button></div>
+      <span class="hnote">tap Almaty: 6,033 official vs 30,000 claimed! ↴</span>
+      <div id="f2map" class="tilemap"></div>
+      <div id="f2barsWrap" hidden><div class="toggle"><button class="on" data-sort="count">Sort by number</button><button data-sort="rural">Sort by rural share</button></div>
+      <div id="f2bars"></div></div>
       <div class="ruralkey"><span>Mostly urban</span><i></i><span>Mostly rural</span></div>
       <div class="detail" id="f2detail">Hover over a region.</div>
       <p class="note">Data collected by the author from the Ministry of Labour and Social Protection portal (inva.gov.kz), statistics as of 22.11.2026. Rural share is for all people with disabilities in the region; the portal does not split hearing disability by city and village.</p>
@@ -458,6 +671,7 @@
 
     <h3>How far can the numbers be trusted?</h3>
     <p>The official figure of 30,497 should be read as a <strong>floor</strong>, not as the real size of the deaf community. It shows how many people the state has formally recognised, not how many need help. NGO estimates of 150,000–200,000 are closer to community knowledge but don't come with published methods, and they changed by 50,000 between 2024 and 2026. The WHO-based figure is an upper bound that includes many older people who will never learn sign language.</p>
+    <blockquote class="pull">The smaller the official number, the easier it is to treat the problem as small.</blockquote>
     <p>For this project, that uncertainty matters in a specific way: <strong>the smaller the official number, the easier it is for the state to treat the problem as small.</strong> A system designed for 30,000 people with 200 interpreters already covers only a fraction of the promised hours. If the real number is five times higher, the gap is far bigger than any official document admits. Any AI solution has to be designed for the population we cannot see, not only for the one the register counts.</p>
 
     <h3>Sources</h3>
@@ -474,12 +688,24 @@
   </div>
 </section>
 
+<div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <!-- SECTION 3 -->
 <section id="research">
   <div class="inner">
-    <div class="sechead"><span class="bignum">03</span><span class="num">Section 3 · Current State of Research</span></div>
+    <div class="sechead"><span class="bignum">03</span><svg class="hand secicon"><use href="#h-two"/></svg><span class="num">Section 3 · Current State of Research</span></div>
     <h2>How researchers have studied this</h2>
-    <p>Research on sign language and technology comes from very different places: computer science labs, Deaf studies, and health services research. Each asks a different question, and reading them side by side shows what is still missing.</p>
+    <p class="dropcap">Research on sign language and technology comes from very different places: computer science labs, Deaf studies, and health services research. Each asks a different question, and reading them side by side shows what is still missing.</p>
+    <span class="hnote">nobody stands in the middle ↴</span>
+    <figure class="venn reveal">
+      <svg viewBox="0 0 520 380" role="img" aria-label="Three overlapping circles: technical research, Deaf-led critique, deployment studies; the empty centre is this project's gap">
+        <circle class="vc v1" cx="190" cy="140" r="115"/><circle class="vc v2" cx="330" cy="140" r="115"/><circle class="vc v3" cx="260" cy="240" r="115"/>
+        <text x="138" y="100" class="vt">Can a machine</text><text x="138" y="120" class="vt">translate signing?</text><text x="138" y="140" class="vs">Bragg · Yin · NU</text>
+        <text x="382" y="100" class="vt">Who is it</text><text x="382" y="120" class="vt">really for?</text><text x="382" y="140" class="vs">De Meulder · Desai</text>
+        <text x="260" y="300" class="vt">What happens with</text><text x="260" y="320" class="vt">real users?</text><text x="260" y="341" class="vs">VRI studies · VLibras</text>
+        <circle class="vgap" cx="260" cy="178" r="28"/><text x="260" y="189" class="vq">?</text>
+      </svg>
+      <figcaption><b>The empty centre is the gap:</b> no study asks how such a tool should fit Kazakhstan's 60-hour system, its new AI law and its deaf community.</figcaption>
+    </figure>
 
     <div class="approach">
       <span class="tagline">Approach 1 · Can a machine recognise and translate signing?</span>
@@ -515,12 +741,13 @@
   </div>
 </section>
 
+<div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <!-- SECTION 4 -->
 <section id="solution">
   <div class="inner">
-    <div class="sechead"><span class="bignum">04</span><span class="num">Section 4 · The AI-Assisted Solution, and What It Would Cost</span></div>
+    <div class="sechead"><span class="bignum">04</span><svg class="hand secicon"><use href="#h-open"/></svg><span class="num">Section 4 · The AI-Assisted Solution, and What It Would Cost</span></div>
     <h2>Köpir: a bridge, not a replacement</h2>
-    <p>I propose <strong>Köpir</strong> (Көпір, "bridge"): a public AI system for Kazakh-Russian Sign Language, built in Kazakhstan on the existing NU datasets, owned jointly by the state and the deaf community. Its main design rule comes straight from the research above: <strong>AI takes the routine, so that humans can take the important.</strong></p>
+    <p class="dropcap">I propose <strong>Köpir</strong> (Көпір, "bridge"): a public AI system for Kazakh-Russian Sign Language, built in Kazakhstan on the existing NU datasets, owned jointly by the state and the deaf community. Its main design rule comes straight from the research above: <strong>AI takes the routine, so that humans can take the important.</strong></p>
 
     <div class="widget reveal" id="tiers">
       <h4>Three tiers of use</h4>
@@ -561,14 +788,16 @@
   </div>
 </section>
 
+<div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <!-- VERDICT -->
 <section id="verdict">
   <div class="inner">
-    <div class="sechead"><span class="bignum">✓</span><span class="num">Verdict</span></div>
+    <div class="sechead"><span class="bignum">✓</span><svg class="hand secicon"><use href="#h-fist"/></svg><span class="num">Verdict</span></div>
     <h2>Should Kazakhstan build it? Only under these conditions</h2>
     <p>My answer is <strong>yes, but only under conditions</strong>. Without them, the safer answer is no: a bad sign language AI is worse than none, because it lets the state say the problem is solved. Tick the conditions to see how the verdict changes.</p>
 
     <div class="widget reveal" id="verdictBox">
+      <span class="hnote">tick them and watch the answer change ↴</span>
       <div id="conds"></div>
       <div class="vresult" id="vresult"></div>
     </div>
@@ -591,10 +820,11 @@
   </div>
 </section>
 
+<div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <!-- TRANSPARENCY -->
 <section id="transparency">
   <div class="inner">
-    <div class="sechead"><span class="bignum">§</span><span class="num">AI transparency statement</span></div>
+    <div class="sechead"><span class="bignum">§</span><svg class="hand secicon"><use href="#h-point"/></svg><span class="num">AI transparency statement</span></div>
     <h2>How this project was made</h2>
     <p>I used Claude (Anthropic) throughout this project, in one chat that is exported as my AI Process Log.</p>
     <p><strong>What Claude did:</strong> suggested and compared possible topics; searched for and summarised news reports, official statistics and academic papers; drafted the prose of each section from my choices and answers; and wrote the code for this website, including the interactive figures.</p>
@@ -643,7 +873,7 @@ function runYear(){
   clearInterval(hgTimer); const dots=[...hg.children]; dots.forEach(d=>d.className='');
   let k=0; const left=document.getElementById('hgLeft'); left.textContent='60 h left'; left.classList.remove('out');
   hgTimer=setInterval(()=>{
-    if(k>=60){clearInterval(hgTimer);left.textContent='0 h left. The year isn\'t over.';left.classList.add('out');return;}
+    if(k>=60){clearInterval(hgTimer);left.textContent='0 h left · year not over';left.classList.add('out');return;}
     dots[k].className='used'; k++; left.textContent=(60-k)+' h left';
   },70);
 }
@@ -718,11 +948,11 @@ renderGap();
 
 /* ---------- Figure 1: how many deaf people ---------- */
 const F1 = [
-  {l:"Society of the Deaf", v:16000, c:"#9cc3d3", d:"<b>~16,000</b>: members of the Kazakhstan Society of the Deaf. Counts only people who joined one organisation."},
-  {l:"Ministry portal (official)", v:30497, c:"#2f5d73", d:"<b>30,497</b>: people with a <em>registered</em> hearing disability (inva.gov.kz, 22.11.2026). Only those who passed the official assessment."},
-  {l:"Ümit centre, 2026", v:150000, c:"#b0715f", d:"<b>~150,000</b>: estimate by the Ümit deaf support centre (2026). No published method."},
-  {l:"Ümit centre, 2024", v:200000, c:"#8a3b2e", d:"<b>~200,000</b>: earlier estimate by the same centre (2024). The estimate changed by 50,000 in two years."},
-  {l:"WHO rate × population", v:1134844, c:"#5b6669", d:"<b>~1.1 million</b>: WHO's global rate of disabling hearing loss (5.5%) applied to Kazakhstan's 20.6 million people. An upper bound: includes many older people who don't use sign language. Author's calculation."}
+  {l:"Society of the Deaf", v:16000, c:"#C9DCCD", d:"<b>~16,000</b>: members of the Kazakhstan Society of the Deaf. Counts only people who joined one organisation."},
+  {l:"Ministry portal (official)", v:30497, c:"#4F7A5A", d:"<b>30,497</b>: people with a <em>registered</em> hearing disability (inva.gov.kz, 22.11.2026). Only those who passed the official assessment."},
+  {l:"Ümit centre, 2026", v:150000, c:"#F7A889", d:"<b>~150,000</b>: estimate by the Ümit deaf support centre (2026). No published method."},
+  {l:"Ümit centre, 2024", v:200000, c:"#D9704E", d:"<b>~200,000</b>: earlier estimate by the same centre (2024). The estimate changed by 50,000 in two years."},
+  {l:"WHO rate × population", v:1134844, c:"#6E5AA8", d:"<b>~1.1 million</b>: WHO's global rate of disabling hearing loss (5.5%) applied to Kazakhstan's 20.6 million people. An upper bound: includes many older people who don't use sign language. Author's calculation."}
 ];
 let f1scale = 'log';
 function drawF1(){
@@ -754,7 +984,7 @@ const F2 = [
  ["West Kazakhstan",819,12788,26768],["Ulytau region",351,2049,11114]
 ].map(([n,h,r,t])=>({n,h,rs:r/t}));
 function ruralColor(s){ // sequential: pale sand (urban) -> deep red (rural)
-  const A=[226,208,196],C=[138,59,46],t=Math.min(1,s/0.85),l=(a,b)=>Math.round(a+(b-a)*t);
+  const A=[253,226,208],C=[110,90,168],t=Math.min(1,s/0.85),l=(a,b)=>Math.round(a+(b-a)*t);
   return `rgb(${l(A[0],C[0])},${l(A[1],C[1])},${l(A[2],C[2])})`;
 }
 let f2sort = 'count';
@@ -819,6 +1049,48 @@ function verdict(){const n=[...cb.querySelectorAll('input')].filter(x=>x.checked
  else if(n>=3){v.className='vresult part';v.innerHTML=`<b>Not yet.</b>${n} of ${CONDS.length} conditions met. Pilot Tier 1 only, and keep working on the rest.`;}
  else{v.className='vresult no';v.innerHTML=`<b>No.</b>${n} of ${CONDS.length} conditions met. Without them, AI becomes a cheap excuse to say the problem is solved.`;}}
 cb.addEventListener('change',verdict); verdict();
+
+/* ---------- scene state ---------- */
+const introEl=document.getElementById('intro'), clinic=document.querySelector('.clinic');
+introEl.classList.add('withscene');
+const _goStage=goStage;
+goStage=function(id){ _goStage(id); clinic.classList.toggle('st2',id==='st2'); introEl.classList.toggle('withscene',id!=='st3'); };
+
+/* ---------- tickets ---------- */
+const tk=document.getElementById('tickets');
+for(let i=0;i<60;i++) tk.appendChild(document.createElement('i'));
+const _renderBudget=renderBudget;
+renderBudget=function(){ _renderBudget(); let used=0; counts.forEach((c,i)=>used+=c*ACTS[i][1]);
+  [...tk.children].forEach((t,i)=>{ t.classList.toggle('torn', i<Math.min(60,Math.round(used))); });
+  tk.classList.toggle('isover',used>60);
+  [...tk.children].forEach(t=>t.classList.toggle('over', used>60)); };
+renderBudget();
+
+/* ---------- tile map ---------- */
+const TILE={ // [col,row,abbr]
+ "North Kazakhstan":[3,0,"SKO"],"Pavlodar region":[5,0,"PAV"],"East Kazakhstan":[6,0,"VKO"],
+ "West Kazakhstan":[0,1,"ZKO"],"Kostanay region":[2,1,"KOS"],"Akmola region":[3,1,"AKM"],"Astana":[4,1,"AST"],"Abai region":[6,1,"ABA"],
+ "Atyrau region":[0,2,"ATY"],"Aktobe region":[1,2,"AKT"],"Ulytau region":[2,2,"ULY"],"Karaganda region":[3,2,"KAR"],"Zhetisu region":[6,2,"ZHE"],
+ "Mangystau region":[0,3,"MAN"],"Kyzylorda region":[2,3,"KYZ"],"Zhambyl region":[4,3,"ZHA"],"Almaty region":[5,3,"ALR"],
+ "Shymkent":[2,4,"SHY"],"Turkestan region":[3,4,"TUR"],"Almaty city":[5,4,"ALA"]
+};
+const CITIES=["Astana","Almaty city","Shymkent"];
+const mapEl=document.getElementById('f2map');
+F2.forEach(x=>{const [c,r,ab]=TILE[x.n];const b=document.createElement('button');
+  b.className='tile'+(CITIES.includes(x.n)?' city':'')+(x.rs>0.5?' dark':'');
+  b.style.gridColumn=(c+1); b.style.gridRow=(r+1); b.style.background=ruralColor(x.rs);
+  b.innerHTML=`<span class="ab">${ab}</span><span class="v">${x.h.toLocaleString('en-US')}</span>`;
+  b.title=x.n;
+  b.onclick=()=>{mapEl.querySelectorAll('.tile').forEach(t=>t.classList.remove('sel'));b.classList.add('sel');
+    let extra='';
+    if(['Almaty city','Almaty region','Zhetisu region'].includes(x.n)) extra=' <br><span style="color:var(--accent)">Almaty city + Almaty region + Zhetisu officially total <b>6,033</b>. The Ümit centre says <b>30,000</b> live in Almaty and Almaty region alone.</span>';
+    document.getElementById('f2detail').innerHTML=`<b>${x.n}</b>: ${x.h.toLocaleString('en-US')} people with a registered hearing disability (${(x.h/30497*100).toFixed(1)}% of the national total). ${Math.round(x.rs*100)}% of all people with disabilities here live in villages.${extra}`;};
+  mapEl.appendChild(b);});
+document.querySelectorAll('#fig2 .viewtoggle button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#fig2 .viewtoggle button').forEach(z=>z.classList.remove('on'));b.classList.add('on');
+  const m=b.dataset.view==='map'; mapEl.hidden=!m; document.getElementById('f2barsWrap').hidden=m; if(!m) drawF2(); });
+document.querySelectorAll('#fig2 .toggle:not(.viewtoggle) button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#fig2 .toggle:not(.viewtoggle) button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f2sort=b.dataset.sort;drawF2();});
 
 /* ---------- progress bar, active nav, reveal ---------- */
 const prog = document.getElementById('progress');
