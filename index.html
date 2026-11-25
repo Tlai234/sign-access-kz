@@ -399,6 +399,21 @@
   .handrule i{flex:1;height:1px;background:var(--ink);opacity:.35}
   .handrule .hand{width:26px;height:34px}
   .handrule .hand:nth-of-type(2){color:var(--lilac)}.handrule .hand:nth-of-type(3){color:var(--amber)}
+
+  /* ===== hand animations ===== */
+  .hand{transform-box:fill-box;transform-origin:50% 95%;display:inline-block}
+  .secicon.live{animation:hwave 1.6s ease-in-out 2}
+  .sechead:hover .secicon{animation:hwave 1.6s ease-in-out 1}
+  .handrule .hand.live{animation:hbob 2.8s ease-in-out infinite}
+  .handrule .hand.live:nth-of-type(2){animation-delay:.35s}
+  .handrule .hand.live:nth-of-type(3){animation-delay:.7s}
+  .secicon.live.h-point{animation:hpoint 1.4s ease-in-out 2}
+  .secicon.live.h-fist{animation:hnod 1.2s ease-in-out 2}
+  @keyframes hwave{0%,100%{transform:rotate(0)}15%{transform:rotate(16deg)}30%{transform:rotate(-10deg)}45%{transform:rotate(14deg)}60%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+  @keyframes hpoint{0%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}55%{transform:translateY(0)}75%{transform:translateY(-4px)}}
+  @keyframes hnod{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(-8deg) translateY(4px)}65%{transform:rotate(4deg) translateY(-2px)}}
+  @keyframes hbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-6deg)}}
+  @media (prefers-reduced-motion:reduce){.hand,.hand.live{animation:none!important}}
 </style>
 </head>
 <body>
@@ -546,7 +561,7 @@
 <!-- SECTION 1 -->
 <section id="problem">
   <div class="inner">
-    <div class="sechead"><span class="bignum">01</span><svg class="hand secicon"><use href="#h-open"/></svg><span class="num">Section 1 · The Problem</span></div>
+    <div class="sechead"><span class="bignum">01</span><svg class="hand secicon h-open"><use href="#h-open"/></svg><span class="num">Section 1 · The Problem</span></div>
     <h2>Sixty hours a year</h2>
 
     <span class="hnote">why I chose this topic ↴</span>
@@ -613,7 +628,7 @@
 <div class="handrule" aria-hidden="true"><i></i><svg class="hand "><use href="#h-open"/></svg><svg class="hand "><use href="#h-point"/></svg><svg class="hand "><use href="#h-two"/></svg><i></i></div>
 <section id="data">
   <div class="inner">
-    <div class="sechead"><span class="bignum">02</span><svg class="hand secicon"><use href="#h-point"/></svg><span class="num">Section 2 · Background &amp; Data</span></div>
+    <div class="sechead"><span class="bignum">02</span><svg class="hand secicon h-point"><use href="#h-point"/></svg><span class="num">Section 2 · Background &amp; Data</span></div>
     <h2>What the numbers show, and what they hide</h2>
 
     <h3>Who measures what</h3>
@@ -692,7 +707,7 @@
 <!-- SECTION 3 -->
 <section id="research">
   <div class="inner">
-    <div class="sechead"><span class="bignum">03</span><svg class="hand secicon"><use href="#h-two"/></svg><span class="num">Section 3 · Current State of Research</span></div>
+    <div class="sechead"><span class="bignum">03</span><svg class="hand secicon h-two"><use href="#h-two"/></svg><span class="num">Section 3 · Current State of Research</span></div>
     <h2>How researchers have studied this</h2>
     <p class="dropcap">Research on sign language and technology comes from very different places: computer science labs, Deaf studies, and health services research. Each asks a different question, and reading them side by side shows what is still missing.</p>
     <span class="hnote">nobody stands in the middle ↴</span>
@@ -745,7 +760,7 @@
 <!-- SECTION 4 -->
 <section id="solution">
   <div class="inner">
-    <div class="sechead"><span class="bignum">04</span><svg class="hand secicon"><use href="#h-open"/></svg><span class="num">Section 4 · The AI-Assisted Solution, and What It Would Cost</span></div>
+    <div class="sechead"><span class="bignum">04</span><svg class="hand secicon h-open"><use href="#h-open"/></svg><span class="num">Section 4 · The AI-Assisted Solution, and What It Would Cost</span></div>
     <h2>Köpir: a bridge, not a replacement</h2>
     <p class="dropcap">I propose <strong>Köpir</strong> (Көпір, "bridge"): a public AI system for Kazakh-Russian Sign Language, built in Kazakhstan on the existing NU datasets, owned jointly by the state and the deaf community. Its main design rule comes straight from the research above: <strong>AI takes the routine, so that humans can take the important.</strong></p>
 
@@ -792,7 +807,7 @@
 <!-- VERDICT -->
 <section id="verdict">
   <div class="inner">
-    <div class="sechead"><span class="bignum">✓</span><svg class="hand secicon"><use href="#h-fist"/></svg><span class="num">Verdict</span></div>
+    <div class="sechead"><span class="bignum">✓</span><svg class="hand secicon h-fist"><use href="#h-fist"/></svg><span class="num">Verdict</span></div>
     <h2>Should Kazakhstan build it? Only under these conditions</h2>
     <p>My answer is <strong>yes, but only under conditions</strong>. Without them, the safer answer is no: a bad sign language AI is worse than none, because it lets the state say the problem is solved. Tick the conditions to see how the verdict changes.</p>
 
@@ -824,7 +839,7 @@
 <!-- TRANSPARENCY -->
 <section id="transparency">
   <div class="inner">
-    <div class="sechead"><span class="bignum">§</span><svg class="hand secicon"><use href="#h-point"/></svg><span class="num">AI transparency statement</span></div>
+    <div class="sechead"><span class="bignum">§</span><svg class="hand secicon h-point"><use href="#h-point"/></svg><span class="num">AI transparency statement</span></div>
     <h2>How this project was made</h2>
     <p>I used Claude (Anthropic) throughout this project, in one chat that is exported as my AI Process Log.</p>
     <p><strong>What Claude did:</strong> suggested and compared possible topics; searched for and summarised news reports, official statistics and academic papers; drafted the prose of each section from my choices and answers; and wrote the code for this website, including the interactive figures.</p>
@@ -1091,6 +1106,13 @@ document.querySelectorAll('#fig2 .viewtoggle button').forEach(b=>b.onclick=()=>{
   const m=b.dataset.view==='map'; mapEl.hidden=!m; document.getElementById('f2barsWrap').hidden=m; if(!m) drawF2(); });
 document.querySelectorAll('#fig2 .toggle:not(.viewtoggle) button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#fig2 .toggle:not(.viewtoggle) button').forEach(x=>x.classList.remove('on'));b.classList.add('on');f2sort=b.dataset.sort;drawF2();});
+
+/* ---------- hand animations ---------- */
+const handIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.remove('live');void e.target.getBoundingClientRect();e.target.classList.add('live');}
+  else if(e.target.closest('.handrule')){e.target.classList.remove('live');}
+}),{threshold:.6});
+document.querySelectorAll('.secicon, .handrule .hand').forEach(h=>handIO.observe(h));
 
 /* ---------- progress bar, active nav, reveal ---------- */
 const prog = document.getElementById('progress');
