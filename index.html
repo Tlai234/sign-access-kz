@@ -469,6 +469,24 @@
   .howit figcaption{grid-column:1/-1;font-size:13.5px;line-height:1.5;color:var(--muted)}
   @media (max-width:700px){.howit{grid-template-columns:1fr}.hw-arrow{justify-self:center}}
   @media (prefers-reduced-motion:reduce){.ph-step{opacity:1;transform:none}.howit .av-l,.howit .av-r{animation:none!important}}
+
+  /* ===== inside Köpir pipeline ===== */
+  .pipe{margin:-0.6em 0 2em;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;font-family:Inter,sans-serif}
+  .pp-head{font-size:13.5px;line-height:1.45;color:var(--ink);padding-bottom:12px;border-bottom:1px dashed var(--rule);margin-bottom:12px}
+  .pp-k{display:inline-block;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:#fff;padding:5px 7px;border-radius:4px;margin-right:6px}
+  .pp-lane{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;margin:10px 0}
+  .pp-name{font:700 12px/1.2 "JetBrains Mono",monospace;color:var(--lilac-d);text-transform:uppercase;letter-spacing:.04em}
+  .pp-steps{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .pp-steps i{font-style:normal;color:var(--accent);font-weight:700}
+  .pp-s{background:#F3ECFA;border-radius:999px;padding:6px 11px;font-size:13px;line-height:1.2;position:relative;opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+  .pipe.in .pp-s{opacity:1;transform:none}
+  .pipe.in .pp-lane:nth-of-type(2) .pp-s:nth-of-type(2){transition-delay:.15s}.pipe.in .pp-lane .pp-s:nth-of-type(3){transition-delay:.3s}.pipe.in .pp-lane .pp-s:nth-of-type(4){transition-delay:.45s}.pipe.in .pp-lane .pp-s:nth-of-type(5){transition-delay:.6s}
+  .pp-s.weak{background:var(--accent-soft);outline:2px dashed var(--accent);outline-offset:-2px}
+  .pp-s.weak em{display:block;font:italic 600 10.5px/1 Inter,sans-serif;color:var(--accent);margin-top:3px}
+  .pp-s.ok{background:var(--blue-soft)}
+  .pipe figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+  @media (max-width:640px){.pp-lane{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){.pp-s{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -627,7 +645,7 @@
 
     <div class="widget reveal" id="budget">
       <h4>Try it: spend your 60 hours</h4>
-      <p class="sub">Add the situations a deaf person might need an interpreter for in one year. How long do the 60 hours last?</p>
+      <p class="sub">Add a year of situations needing an interpreter. How long do 60 hours last?</p>
       <div class="tickets" id="tickets"></div>
       <div class="meter"><div class="used" id="usedBar"></div><div class="txt"><span id="usedTxt">0 h used</span><span id="leftTxt">60 h left</span></div></div>
       <div class="status" id="status">Click + to add a situation.</div>
@@ -848,7 +866,31 @@
         </div>
         <span class="hw-where">counter tablets · own phone</span>
       </div>
-      <figcaption><b>How Köpir works.</b> Screens are ready today; the camera app is harder, so it is piloted first. Tier 3 stays human.</figcaption>
+      <figcaption><b>How Köpir works.</b> Tier 3 stays human.</figcaption>
+    </figure>
+
+    <figure class="pipe reveal" aria-label="Inside Köpir: what the AI learns from and the steps it performs">
+      <div class="pp-head"><span class="pp-k">Inside Köpir</span> Learns from <b>NU's datasets</b> (K-RSL, FluentSigners-50) + new ЦОН and clinic phrases, <b>recorded with consent</b></div>
+      <div class="pp-lane">
+        <span class="pp-name">Camera app</span>
+        <div class="pp-steps">
+          <span class="pp-s">Sees hands + face</span><i>→</i>
+          <span class="pp-s weak">Recognises signs<em>hardest step</em></span><i>→</i>
+          <span class="pp-s">Text for staff</span><i>→</i>
+          <span class="pp-s">Staff speech → text</span><i>→</i>
+          <span class="pp-s ok">Avatar signs back</span>
+        </div>
+      </div>
+      <div class="pp-lane">
+        <span class="pp-name">Screens</span>
+        <div class="pp-steps">
+          <span class="pp-s">Existing text</span><i>→</i>
+          <span class="pp-s">Sign grammar</span><i>→</i>
+          <span class="pp-s">Avatar or signer clips</span><i>→</i>
+          <span class="pp-s ok">Deaf reviewers check</span>
+        </div>
+      </div>
+      <figcaption>The hardest step is piloted first; the human button is always on.</figcaption>
     </figure>
 
     <div class="widget reveal" id="tiers">
@@ -869,7 +911,7 @@
       <div class="case">
         <span>Case study 1 · Brazil</span>
         <h4>VLibras: a free state translator</h4>
-        <p>Developed by the Federal University of Paraíba with the federal government, VLibras is free and open source, with a vocabulary of about 21,000 animated signs, and translates Portuguese into Brazilian Sign Language on government websites, led by gov.br (Zero Project; Agência Brasil, 2021).</p>
+        <p>Developed by the Federal University of Paraíba with the federal government, VLibras is free and open source, with a vocabulary of about 21,000 animated signs, translating Portuguese into Brazilian Sign Language on government websites (Zero Project; Agência Brasil, 2021).</p>
         <p><b>Lesson:</b> scale is possible when the state owns the tool. But a 2023 evaluation found it mostly transposes Portuguese word order rather than truly translating, and a governance study found low adoption among deaf users and recommended involving them far more. <em><mark class="hl l">Reach without quality and ownership is not access.</mark></em></p>
       </div>
       <div class="case">
@@ -881,7 +923,7 @@
     </div>
 
     <h3>The bill</h3>
-    <p>Every AI system has costs that do not show up in a pitch. Click each one.</p>
+    <p>Every AI system has hidden costs. Click each one.</p>
     <div class="widget reveal" id="bill">
       <div class="billgrid" id="billgrid"></div>
       <div class="detail" id="billDetail">Choose a cost.</div>
